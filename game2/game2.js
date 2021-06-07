@@ -24,12 +24,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const header = document.querySelector('header');
     const board = document.querySelector('.board');
     const indicator = document.querySelector('.indicator');
+    // Creation board with HTML
     function generateBoard() {
         board.innerHTML = '';
         createCards();
         placeIndicator();
     }
 
+    // Initiate the creation of each card
     let widthCard = 0;
     let heightCard = 0;
     function createCards() {
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Decide the color of each card, according to the type
     function decideColor(x, y) {
         for (let card in BOARD_INFOS.cards) {
 
@@ -56,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
         createCard();
     }
 
+    // Create a card and happend it on the board
     function createCard(color) {
         const card = document.createElement('div');
         card.style.width = `${widthCard}px`;
@@ -65,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
         board.appendChild(card);
     }
 
+    // Put the indicator according to the coordinates of the model
     function placeIndicator(direction) {
         const indicator_length = indicator.offsetWidth;
         if (!direction) {
@@ -75,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Animate the inidcator when arrows are pressed
     function moveIndicator(indicator, direction) {
         let animation = '';
         if (direction === "UP") {
@@ -120,23 +126,39 @@ document.addEventListener("DOMContentLoaded", function() {
             const card_bounds = cards[i].getBoundingClientRect();
             
             if (indicator_bounds.top > card_bounds.top && indicator_bounds.bottom < card_bounds.bottom && 
-                indicator_bounds.left > card_bounds.left && indicator_bounds.right < card_bounds.right 
-                && cards[i].style.backgroundColor === "white") {
-                
-                const color = BOARD_INFOS.settings.colors[Math.floor(Math.random() * 4)];
-                cards[i].style.background = color;
-                // Update the model with the new colored card
-                BOARD_INFOS.cards.push({
-                    x: Math.floor(indicator_bounds.left/widthCard), 
-                    y: Math.floor((indicator_bounds.top - header.offsetHeight)/heightCard),
-                    color
-                });
+                indicator_bounds.left > card_bounds.left && indicator_bounds.right < card_bounds.right) {
 
-                checkWin()
+                let saved = false;
+                const x = Math.floor(indicator_bounds.left/widthCard);
+                const y = Math.floor((indicator_bounds.top - header.offsetHeight)/heightCard);
+                
+                for (let j = 0; j < BOARD_INFOS.cards.length; j++) {
+                    if (BOARD_INFOS.cards[j].x === x && BOARD_INFOS.cards[j].y === y) {
+                        saved = true;
+                        break;
+                    } 
+                };
+                
+                if (!saved) {
+                    saveCard(x, y, cards[i]);
+                    checkWin();
+                }
+
+                break;
             }
         }
     }
 
+    function saveCard(x, y, card) {
+        const color = BOARD_INFOS.settings.colors[Math.floor(Math.random() * 4)];
+        card.style.background = color;
+        // Update the model with the new colored card
+        BOARD_INFOS.cards.push({
+            x, y, color
+        });
+    }
+
+    // Dynamically set the color of a card when the indicator is moving
     colorCardsInterval = '';
     function colorCardsOnOff(mode) {
         if (mode === true) {
@@ -146,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Check if the player won or not
     function checkWin() {
         console.log(BOARD_INFOS.cards.length, BOARD_INFOS.nb_card_height * BOARD_INFOS.nb_card_width);
         if (BOARD_INFOS.cards.length === (BOARD_INFOS.nb_card_height * BOARD_INFOS.nb_card_width)) {
