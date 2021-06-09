@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function setEventLetters() {
         const letters = document.querySelectorAll('.letter');
         for (let i = 0; i < letters.length; i++) {
-            const closureLetter = colorLetter(i);
-            letters[i].addEventListener('click', closureLetter);
+            letters[i].addEventListener('click', colorLetter(i));
         }
     }
 
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             changeIndice();
             results[indice_result] = COLORS[indice];
             this.style.color = COLORS[indice];
-            checkAnswer();
+            checkWin();
         };
 
         function changeIndice() {
@@ -58,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return changeColorLetter;
     }
 
-    function checkAnswer() {
+    function checkWin() {
         if (JSON.stringify(results) === JSON.stringify(draw_colors)) {
             document.querySelector('.win').style.visibility = "visible";
             window.setTimeout(function() { window.location = "../game4/game4.html" }, 2500);

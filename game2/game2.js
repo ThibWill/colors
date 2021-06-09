@@ -170,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Check if the player won or not
     function checkWin() {
-        console.log(BOARD_INFOS.cards.length, BOARD_INFOS.nb_card_height * BOARD_INFOS.nb_card_width);
         if (BOARD_INFOS.cards.length === (BOARD_INFOS.nb_card_height * BOARD_INFOS.nb_card_width)) {
             document.querySelector('.win').style.visibility = "visible";
             window.setTimeout(function() { window.location = "../game3/game3.html" }, 2500);
