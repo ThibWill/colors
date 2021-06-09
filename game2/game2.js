@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function arrowPress(e) {
         let direction = "";
         // LEFT
-        if (e.keyCode === 37) {
+        if (e.code === "ArrowLeft") {
             let new_x = 0;
             BOARD_INFOS.cards.forEach(obstacle => {
                 if (obstacle.type === "obstacle" && obstacle.x < BOARD_INFOS.indicator.x && obstacle.x >= new_x && obstacle.y === BOARD_INFOS.indicator.y) {
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
             direction = "LEFT";
         } 
         // UP
-        else if (e.keyCode === 38) {
+        else if (e.code === "ArrowUp") {
             let new_y = 0;
             BOARD_INFOS.cards.forEach(obstacle => {
                 if (obstacle.type === "obstacle" && obstacle.y < BOARD_INFOS.indicator.y && obstacle.y >= new_y && obstacle.x === BOARD_INFOS.indicator.x) {
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
             direction = "UP";
         } 
         // RIGHT
-        else if (e.keyCode === 39) {
+        else if (e.code === "ArrowRight") {
             let new_x = BOARD_INFOS.nb_card_width - 1;
             BOARD_INFOS.cards.forEach(obstacle => {
                 if (obstacle.type === "obstacle" && obstacle.x > BOARD_INFOS.indicator.x && obstacle.x <= new_x && obstacle.y === BOARD_INFOS.indicator.y) {
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
             direction = "RIGHT";
         } 
         // DOWN
-        else if (e.keyCode === 40) {
+        else if (e.code === "ArrowDown") {
             let new_y = BOARD_INFOS.nb_card_height - 1;
             BOARD_INFOS.cards.forEach(obstacle => {
                 if (obstacle.type === "obstacle" && obstacle.y > BOARD_INFOS.indicator.y && obstacle.y <= new_y && obstacle.x === BOARD_INFOS.indicator.x) {
