@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (BOARD_INFOS.results.includes(color)) {
             card.style.background = color;
         } else {
-            card.style.background = 'white';
+            card.style.background = 'rgb(255, 255 ,255)';
         }
     }
 
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let count = 0;
 
         function changeColorClicked() {
-            if (!checkColor(this.id)) { return; }
+            if (!checkColor(this)) { return; }
             count ++;
             color = BOARD_INFOS.color_shuffle[this.id];
             this.style.background = color;
@@ -93,19 +93,32 @@ document.addEventListener('DOMContentLoaded', function() {
             checkWin();
         }
 
-        function checkColor(id_card) {
-            if (color !== '' && color !== BOARD_INFOS.color_shuffle[id_card]) {
-                createBoard();
+        function rgbToHex(rgb) {
+            console.log(rgb)
+            return `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('').toUpperCase()}`;
+        }
+
+        function checkColor(card) {
+            if (color !== '' && color !== BOARD_INFOS.color_shuffle[card.id]) {
+                board.querySelectorAll('.card').forEach(function(board_card) {
+                    if (rgbToHex(board_card.style.backgroundColor) === color) {
+                        board_card.style.backgroundColor = "rgb(255, 255, 255)";
+                    }
+                });
                 reset();
+            }
+
+            if (BOARD_INFOS.results.includes(rgbToHex(card.style.backgroundColor))) {
                 return false;
             }
             return true;
+            
         }
 
         function lockColor() {
             if (!BOARD_INFOS.results.includes(color)) {
                 BOARD_INFOS.results.push(color);
-                reset()
+                reset();
             }
         }
 
