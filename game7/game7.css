@@ -1,0 +1,63 @@
+main 
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.guess
+{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-hexa
+{
+    font-size: 100px;
+}
+
+.rgb
+{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter
+{
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+.primary
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 8%;
+    margin-right: 8%;
+    align-items: center;
+}
+
+.container-bar
+{
+    height: 300px;
+    width: 40px;
+    border-style: solid;
+    border-width: 2px;
+    margin-bottom: 100px;
+}
+
+.bar 
+{
+    position: fixed;
+    background-color: black;
+    width: 30px;
+    height: 60px;
+    top: 50%;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
