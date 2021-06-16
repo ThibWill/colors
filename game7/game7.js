@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const color_guess = document.querySelector('.color-hexa');
 
     const colors_hexa = [MAX_HEXA_VALUE, MAX_HEXA_VALUE, MAX_HEXA_VALUE];
-    const colors =  ["#0028FF", "#FFD700", "#00FF58"];
+    const colors =  ["#0028FF", "#FFD700", "#96EA5E"];
     let authorized = true;
 
     let initialY = 0;
@@ -35,10 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentColor;
     function setBackground() {
-        let indice = Math.floor(Math.random() * colors.length);
-        currentColor = colors[indice];
+        currentColor = colors[0];
         rgb.style.background = currentColor;
-        colors.splice(indice, 1);
+        colors.splice(0, 1);
     }
     
 

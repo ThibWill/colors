@@ -79,11 +79,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function clickCard() {
         let color = '';
         let count = 0;
+        let ids = [];
 
         function changeColorClicked() {
             if (!checkColor(this)) { return; }
             count ++;
             color = BOARD_INFOS.color_shuffle[this.id];
+            ids.push(this.id);
             this.style.background = color;
 
             if (count === Math.floor(BOARD_INFOS.nb_card_height * BOARD_INFOS.nb_card_width / BOARD_INFOS.settings.colors.length)) {
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 reset();
             }
 
-            if (BOARD_INFOS.results.includes(rgbToHex(card.style.backgroundColor))) {
+            if (BOARD_INFOS.results.includes(rgbToHex(card.style.backgroundColor)) || ids.includes(card.id)) {
                 return false;
             }
             return true;
@@ -124,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function reset() {
             color = '';
             count = 0;
+            ids = [];
         }
 
         return changeColorClicked;

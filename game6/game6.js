@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const LETTERS = ['l', 'w', 'o', 'e', 'y', 'l'];
 
     const panels = document.querySelectorAll('.panel');
+
+    // Initialization of buttons
+    const buttons = document.querySelector('.buttons').querySelectorAll('button');
+    let indice = 0;
+    buttons.forEach(function(button) {
+        button.style.background = COLORS[indice];
+        indice ++;
+        button.addEventListener('click', changeColorPanels);
+    });
+
+    // Color the letters 
     function colorLetters() {
         for (let i = 0; i < panels.length; i++) {
             panels[i].innerHTML = LETTERS[i];
@@ -12,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     let numberPanel = 0;
+    // Change the color of a panel when click on a button
     function changeColorPanels() {
         if (numberPanel == panels.length) {
             numberPanel = 0;
@@ -22,14 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         checkAnswer();
     }
 
-    const buttons = document.querySelector('.buttons').querySelectorAll('button');
-    let indice = 0;
-    buttons.forEach(function(button) {
-        button.style.background = COLORS[indice];
-        indice ++;
-        button.addEventListener('click', changeColorPanels);
-    });
-
+    // Check if the pattern of color is right
     function checkAnswer() {
         for (let i = 0; i < panels.length; i++) {
             if (panels[i].style.backgroundColor !== 'rgb(255, 215, 0)') {
