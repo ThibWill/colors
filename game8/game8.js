@@ -77,8 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkWin() {
         let x, y = -1;
         move ++;
-        console.log(move)
-        console.log(BOARD.boxes);
         for (let i = 0; i < BOARD.boxes.length; i++) {
             
             if (x === -1 || y === -1) {
