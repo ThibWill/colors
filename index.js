@@ -1,6 +1,9 @@
 const COLORS = ["#FF00A7", "#0028FF", "#00FF58", "#FFD700", "#FFA500"];
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    document.cookie = "level=1; Secure; path=/";
+
     const panels = document.querySelectorAll('.panel');
     function initialize() {
         let numPanel = 0;

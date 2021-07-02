@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Cookie gestion
+    redirect(6);
+
     const COLORS =  ["#FF00A7", "#0028FF", "#00FF58", "#FFD700"];
     const LETTERS = ['l', 'w', 'o', 'e', 'y', 'l'];
 
@@ -46,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function win() {
         document.querySelector('.win').style.visibility = "visible";
+        changeCookie(7);
         window.setTimeout(function() { window.location = "../game7/game7.html" }, 2500);
     }
 

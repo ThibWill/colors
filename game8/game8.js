@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Cookie gestion
+    redirect(8);
+
     const COLORS =  ["#FF00A7", "#0028FF", "#00FF58", "#FFD700"];
     const BOARD = {
         length_board: 8,

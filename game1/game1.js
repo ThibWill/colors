@@ -2,9 +2,13 @@ const COLORS = ["#FF00A7", "#0028FF", "#00FF58", "#FFD700"];
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Cookie gestion
+    redirect(1);
+
     const panels = document.querySelectorAll('.panel');
     const letters = document.querySelectorAll('.letter');
 
+    // Change the color of the panel and go to the next one
     let numberPanel = 0;
     function changeColorPanels() {
         if (numberPanel == panels.length) {
@@ -16,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         checkAnswer();
     }
 
+    // Initiate the buttons
     const buttons = document.querySelector('.buttons').querySelectorAll('button');
     let indice = 0;
     buttons.forEach(function(button) {
@@ -24,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', changeColorPanels);
     });
 
+    // Generate the color code
     const answer = []
     function generateAnswer() {
         for (let i = 0; i < letters.length; i++) {
@@ -32,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         colorify();
     }
 
+    // Color the letters
     function colorify() {
         for (let i = 0; i < letters.length; i++) {
             letters[i].style.color = COLORS[answer[i]];
@@ -44,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkAnswer() {
         for (let i = 0; i < panels.length; i++) {
-            if (rgbToHex(panels[i].style.backgroundColor) != COLORS[answer[i]]) {
+            if (!panels[i].style.backgroundColor || rgbToHex(panels[i].style.backgroundColor) != COLORS[answer[i]]) {
                 break;
             }
             if (i === panels.length - 1) {
@@ -55,7 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function win() {
         document.querySelector('.win').style.visibility = "visible";
+        changeCookie(2);
         window.setTimeout(function() { window.location = "../game2/game2.html" }, 2500);
     }
+
     generateAnswer();
 });

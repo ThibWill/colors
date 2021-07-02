@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     
+    // Cookie gestion
+    redirect(2);
+
     // Model
     const BOARD_INFOS = {
         nb_card_width: 9,
@@ -172,6 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function checkWin() {
         if (BOARD_INFOS.cards.length === (BOARD_INFOS.nb_card_height * BOARD_INFOS.nb_card_width)) {
             document.querySelector('.win').style.visibility = "visible";
+            changeCookie(3);
             window.setTimeout(function() { window.location = "../game3/game3.html" }, 2500);
         }
     }

@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Cookie gestion
+    redirect(4);
+
     const BOARD_INFOS = {
         nb_card_width: 4,
         nb_card_height: 4,
@@ -135,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkWin() {
         if (BOARD_INFOS.results.length === BOARD_INFOS.settings.colors.length) {
             document.querySelector('.win').style.visibility = "visible";
+            changeCookie(5);
             window.setTimeout(function() { window.location = "../game5/game5.html" }, 2500);
         }
     }
